@@ -17,7 +17,7 @@ WEIGHT = cell(num_hidden_layer + 1, 1);
 
 for i = 1:num_hidden_layer + 1
     WEIGHT{i} = rand(unit_num_list(i), unit_num_list(i + 1));
-    WEIGHT{i} = WEIGHT{i} .* 2 - 1; % 控制在-1,1之间
+    WEIGHT{i} = WEIGHT{i} .* 2 - 1;  % 控制在-1,1之间
     WEIGHT{i} = random_initialize(WEIGHT{i}, num_input);
 end
 
