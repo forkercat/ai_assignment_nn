@@ -43,6 +43,7 @@ end
 %% 训练
 
 for i = 1:iteration      % 第i次迭代
+    alpha = ALPHA * (iteration - i) / (iteration);
     for j = 1:size(Xtrain, 1)     % 第j个样本
         OUTPUT{1} = Xtrain(j, :)';
         % 前向传播
@@ -60,8 +61,8 @@ for i = 1:iteration      % 第i次迭代
                 ERROR_GRAD{ik} = OUTPUT{ik + 1} .* (1 - OUTPUT{ik + 1}) .* (WEIGHT{ik + 1} * ERROR_GRAD{ik + 1});
             end
             % DELTA
-            DELTA_WEIGHT{ik} = ALPHA * OUTPUT{ik} * ERROR_GRAD{ik}';
-            DELTA_THETA{ik} = ALPHA * THETA{ik} .* ERROR_GRAD{ik};
+            DELTA_WEIGHT{ik} = alpha * OUTPUT{ik} * ERROR_GRAD{ik}';
+            DELTA_THETA{ik} = alpha * THETA{ik} .* ERROR_GRAD{ik};
         end
         % 更新
         for k = 1:size(THETA, 1)
@@ -69,9 +70,10 @@ for i = 1:iteration      % 第i次迭代
             THETA{k} = THETA{k} + DELTA_THETA{k};
         end
     end
-    fprintf('第 %d 次迭代...... Error: %.5f \n', i, sum(ERROR(i, :) .^ 2));
+    if mod(i, 10) == 0 || i == 1
+        fprintf('第 %d 次迭代...... Error: %.5f   Alpha: %.5f\n', i, sum(ERROR(i, :) .^ 2), alpha);
+    end
 end
-
 
 
 end

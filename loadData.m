@@ -45,7 +45,7 @@ end
 
 % displaying
 
-fprintf('样本量: %d  特征量: %d \n类别: ', size(X, 1), size(X, 2));
+fprintf('样本量: %d 个\n特征量: %d 个\n类别: ', size(X, 1), size(X, 2));
 
 for i=1:size(labels, 2)
     fprintf('%s', labels{i});
