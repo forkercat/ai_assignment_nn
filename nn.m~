@@ -4,12 +4,11 @@
 clear;
 
 % 读入数据
-X = [2 2; 
-     3 4;
-     5 2
-     ];
- 
-y = [1 0; 0 1; 1 0];
+[X, y, labels] = loadData('iris.txt', ' ');
+
+sprintf('样本量: %d  特征量: %d \n类别: %s', size(X.2), size(X,2),)
+
+pause;
 
 % 定义层数, 如3层, 分别有2,2,3个神经元可定义为[2,2,3]
 num_input = size(X, 2);
@@ -25,9 +24,6 @@ test_ptage = 0.2;
 
 
 %% 参数初始化
-
-
-
 
 % 样本数量
 m = size(X, 1);
@@ -45,10 +41,6 @@ Xtrain = X(1:m_train, :); ytrain = y(1:m_train, :);
 Xtest = X(m_train+1:end, :); ytest = y(m_train+1:end, :);
 
 
-
-
-
-
 unit_num_list
 
 
@@ -63,10 +55,8 @@ num_hidden_layer = size(unit_num_list, 2) - 2;
 % 定义权重
 WEIGHT = cell(num_hidden_layer + 1, 1);
 
-for i = 1:size(WEIGHT)
-    WEIGHT{i} = rand(unit_num_list(i), unit_num_list(i + 1));
-    WEIGHT{i} = WEIGHT{i} .* 2 - 1;  % 控制在-1,1之间
-    WEIGHT{i} = random_initialize(WEIGHT{i}, num_input);
+for i = 1:size(WEIGHT, 1)
+    WEIGHT{i} = random_initialize([unit_num_list(i), unit_num_list(i + 1)], num_input);
 end
 
 % 定义阈值
@@ -74,10 +64,7 @@ end
 THETA = cell(num_hidden_layer + 1, 1);
 
 for i = 1:size(THETA, 1)
-    THETA{i} = random_initialize([], )
-    THETA{i} = rand(unit_num_list(i + 1), 1);
-    THETA{i} = THETA{i} .* 2 - 1;
-    THETA{i} = random_initialize(THETA{i}, num_input);
+    THETA{i} = random_initialize([unit_num_list(i + 1), 1], num_input);
 end
 
 

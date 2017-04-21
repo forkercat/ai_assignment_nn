@@ -4,14 +4,7 @@
 clear;
 
 % 读入数据
-DATA = load()
-
-X = [2 2; 
-     3 4;
-     5 2
-     ];
- 
-y = [1 0; 0 1; 1 0];
+[X, y, y_raw, labels] = loadData('iris.txt', ' ');
 
 % 定义层数, 如3层, 分别有2,2,3个神经元可定义为[2,2,3]
 num_input = size(X, 2);
@@ -45,9 +38,6 @@ Xtest = X(m_train+1:end, :); ytest = y(m_train+1:end, :);
 
 
 unit_num_list
-
-
-
 
 
 %% 初始化权值和阈值

@@ -1,4 +1,5 @@
-%% 随机初始化参数函数, size是返回的尺寸, F是输入层的单元个数
+%% 随机初始化参数函数
+% size是返回的尺寸, F是输入层的单元个数
 function R = random_initialize(size, F)
 
 R = rand(size(1), size(2)); % 初始化0 - 1
