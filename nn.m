@@ -40,9 +40,12 @@ m_test = m - m_train;
 sel = randperm(m);
 X = X(sel,:); y = y(sel,:);
 
+% 归一化
+[X_norm maxVal minVal] = featureNormalize(X);
+
 % 根据比例生成 训练集 和 测试集
-Xtrain = X(1:m_train, :); ytrain = y(1:m_train, :); 
-Xtest = X(m_train+1:end, :); ytest = y(m_train+1:end, :);
+Xtrain = X_norm(1:m_train, :); ytrain = y(1:m_train, :); 
+Xtest = X_norm(m_train+1:end, :); ytest = y(m_train+1:end, :);
 
 % raw用1,2,3表示, 而不是010, 100, 001
 ytrain_raw = [];
